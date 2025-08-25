@@ -1,4 +1,4 @@
-#dicionario que armazena os produtos, contendo codigo, nome, preco e quantidade
+#dicionario que guarda os produtos, codigo, nome, preco e quantidade
 produtos = {
     "cod1": {
         "nome": "Turbocompressor HKS",
@@ -12,8 +12,8 @@ produtos = {
     }
 }
 
-#funcao para adicionar um novo produto
-def adicionar():
+#definicao de uma funcao para adicionar um novo produto
+def add_prod():
     cod = input("digite o codigo do produto: ")
     nome = input ("digite o nome do produto: ")
     preco = float(input("digite o preco do produto: "))
@@ -24,37 +24,37 @@ def adicionar():
     produtos[cod]["preco"] = preco
     produtos[cod]["quantidade"] = quantidade
 
-#funcao para listar os produtos
-def listar():
+#definicao de uma funcao para listar os produtos
+def listar_prod():
     for prod in produtos:
         print(produtos[prod])
 
-#funcao para buscar um produto pelo codigo
-def buscar():
-    cod = input("digite o codigo: ")
+#definicao de uma funcao para buscar um produto pelo codigo(mas eficiente)
+def buscar_prod():
+    cod = input("digite o codigo do produto que queira buscar: ")
     print(produtos[cod])
 
-#funcao para atualizar um atributo de um produto (nome, preco ou quantidade)
-def atualizar():
-    cod = input("digite o codigo do produto: ")
+#definicao de uma funcao para atualizar um atributo de um produto (nome, preco ou quantidade)
+def atualizar_prod():
+    cod = input("digite o codigo do produto que queria mudar: ")
     atributos = input("digite nome da area que voce quer mudar(ex: preco, quantidade, ou nome): ")    
     atualiza_prod = input("digite o novo nome, preco ou quantidade: ")
 
     produtos[cod][atributos] = atualiza_prod  #atualiza o valor do atributo
 
-#funcao para remover um produto pelo codigo
-def remover():
-    cod = input("digite o codigo do produto: ")
+#definicao de uma funcao para deletar um produto pelo codigo
+def deletar_prod():
+    cod = input("digite o codigo do produto que queira deletar: ")
     del produtos[cod]
     
-#funcao para calcular o valor total em estoque de um produto (preço x quantidade)
+#definicao de uma funcao para calcular o valor total em estoque de um produto (preço * quantidade)
 def calcular():
-    cod = input("digite o codigo do produto: ")
+    cod = input("digite o codigo do produto para que seu estoque seja calcular: ")
     resultado = produtos[cod]["preco"]*produtos[cod]["quantidade"]
 
     print(resultado)
 
-#parte principal do programa, exibe o menu e executa as funcoes conforme a escolha do usuario
+#parte que sera exibida quando iniciar o codigo, um menu que executa as funcoes conforme a escolha do usuario
 while True:
     print("1 para atualizar os produtos")
     print("2 para adicionar os produtos")
@@ -63,30 +63,30 @@ while True:
     print("5 para buscar os produtos")
     print("6 para listar os produtos")
 
-    opcao = int(input("escolha uma opcao(1 a 6): "))
+    opcao = int(input("escolha uma opcao(1 a 6): ")) #le a opcao do usuario
 
     if opcao == 1:
-        atualizar()
+        atualizar_prod() 
 
     elif opcao == 2:
-        adicionar()
+        add_prod()
 
     elif opcao == 3:
-        remover()
+        deletar_prod()
 
     elif opcao == 4:
         calcular()
 
     elif opcao == 5:
-        buscar()
+        buscar_prod()
 
     elif opcao == 6:
-        listar()
+        listar_prod()
 
     else:
         print("opcao nao correspondente")
    
     resposta = input("quer continuar? s/n?")
 
-    if resposta.lower() == 'n':
+    if resposta.lower() == 'n': #se a resposta for nao, o loop se encerra
         break
